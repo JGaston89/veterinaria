@@ -1,0 +1,23 @@
+About US
+Nuestro cuerpo Medico
+Alimentos para tu mascota
+Toys
+Cuchas y correas
+Jaulas y aves
+
+
+Cliente
+DNI
+Apellido
+Nombre
+Correo
+Password
+
+
+Mascota
+idCliente
+Nombre
+Raza
+FechaNac
+
+HistorialClinico

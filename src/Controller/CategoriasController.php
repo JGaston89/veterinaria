@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductoRepository;
+use App\Form\ProductoType;
+use App\Entity\Producto;
 
 
 #[Route('/categorias')]
@@ -18,6 +20,7 @@ class CategoriasController extends AbstractController
     #[Route('/', name: 'app_categorias_index', methods: ['GET'])]
     public function index(CategoriasRepository $categoriasRepository): Response
     {
+        
         return $this->render('categorias/index.html.twig', [
             'categorias' => $categoriasRepository->findAll(),
         ]);
@@ -57,14 +60,42 @@ class CategoriasController extends AbstractController
     }
 
     
-    #[Route('/{id}', name: 'app_categorias_show', methods: ['GET'])]
-    public function show(Categorias $categoria, ProductoRepository $productoRepository, $id): Response
+    #[Route('/{id}', name: 'app_categorias_show', methods: ['GET' ,'POST'])]
+    public function show(Request $request, Categorias $categoria, ProductoRepository $productoRepository, $id): Response
     {
        $data=$productoRepository->getProductosByCategorias($id);
+
+       $producto = new Producto();
+        $form = $this->createForm(ProductoType::class, $producto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $producto = $form->getData();
+            $producto->setCategorias($categoria);
+            $Imagen = $form->get('Imagen')->getData();
+           if ($Imagen){
+                $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+                try {
+                    $Imagen->move(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads/',
+                        $newFileName
+                    );
+                } catch (FileException $e){
+                    return new Response($e->getMessage());
+                }
+                
+                $producto->setImagen('/uploads/' . $newFileName);
+           }
+            $productoRepository->save($producto, true);
+            return $this->redirectToRoute('app_categorias_show', ['id' => $id], Response::HTTP_SEE_OTHER);
+        }
         
-        return $this->render('categorias/show.html.twig', [
+        return $this->renderForm('categorias/show.html.twig', [
             'productos'=>$data,
             'categoria' => $categoria,
+            'producto' => $producto,
+            'form' => $form,        
+            
         ]);
     }
 
@@ -112,12 +143,15 @@ class CategoriasController extends AbstractController
     }
 
 
-    #[Route('/{id}', name: 'app_categorias_delete', methods: ['POST'])]
-    public function delete(Request $request, Categorias $categoria, CategoriasRepository $categoriasRepository): Response
+    #[Route('/delete/{id}', name: 'app_categorias_delete', methods: ['POST'])]
+    public function delete(Request $request, Categorias $categoria, CategoriasRepository $categoriasRepository, $id, ProductoRepository $productoRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categoria->getId(), $request->request->get('_token'))) {
-            $categoriasRepository->remove($categoria, true);
-        
+            $productos=$productoRepository->findByCategorias($id);
+        foreach($productos as $producto){
+            $productoRepository->remove($producto);
+        };
+            $categoriasRepository->remove($categoria, true);        
         }
 
         return $this->redirectToRoute('app_categorias_index', [], Response::HTTP_SEE_OTHER);

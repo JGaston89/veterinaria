@@ -74,7 +74,7 @@ class UserController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $userRepository->add($user, true);
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }

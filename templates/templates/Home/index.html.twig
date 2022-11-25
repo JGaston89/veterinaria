@@ -28,21 +28,20 @@
 
   
   <div class="col-md-1 p-lg-5  my-5">
-  <div class="intro ">
-  <div class="content">
-  <div class="header-group"> 
+    <div class="intro ">
+    <div class="content">
+    <div class="header-group"> 
     <h1 class="header-title display-4 fw-normal text-success">Veterinaria</h1>
       <p class="lead fw-normal text-success ">Registrate y logeate para poder comprar o hacer consultas online para tu mascota</p>
-    <a
-      class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-      href="/{{ app.user ? 'logout' : 'login' }}"
-      @click="isOpen = false">
-      {{ app.user ? 'Logout' : 'Login' }}
-    </a>
-  </div>
-  </div>
-  </div>
-  
+  <a
+    class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+    href="/{{ app.user ? 'logout' : 'login' }}"
+    @click="isOpen = false">
+    {{ app.user ? 'Logout' : 'Login' }}
+  </a>
+    </div>
+    </div>
+    </div> 
     {# <a class="btn btn-outline-secondary" href="/login">Login</a> #}
     {# <a class="btn btn-outline-secondary" href="/register">Registrarse</a> #}
   </div>
@@ -202,9 +201,6 @@ color: #fff;
     
   }
 
-  
-
-  
 
 .fondo{
 background-image: 
@@ -212,11 +208,10 @@ url(https://croydonparkvet.com.au/wp-content/uploads/2017/05/Header-background-5
 background-position: 90% 50%;
 background-size: fill;
 
-
 }
 
 
-/* titulo */
+/* titulo (web) (https://codepen.io/ArnaudBalland/pen/LZyvGZ) */
 
 .intro{
   background: url(https://source.unsplash.com/cTO6DWSIdWI);

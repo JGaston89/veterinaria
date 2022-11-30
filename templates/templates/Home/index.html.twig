@@ -5,172 +5,6 @@
 
 {% block body %}
 
-<body> 
-
-<main>
-  
-  <div class="fondo position-relative overflow-hidden p-3 p-md-5 text-center bg-info text-dark">
-
-    <nav class="container d-flex flex-column flex-md-row justify-content-between">
-    
-    <a class="py-2" href="#" aria-label="Product">
-    
-      <i class="fa-regular fa-hospital fs-3 position-absolute top-0 start-0" ></i>
-    </a>
-    </nav>
-
-    {# <a
-      class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-      href="/{{ app.user ? 'logout' : 'login' }}"
-      @click="isOpen = false">
-      {{ app.user ? 'Logout' : 'Login' }}
-    </a> #}
-
-  
-  <div class="col-md-1 p-lg-5  my-5">
-    <div class="intro ">
-    <div class="content">
-    <div class="header-group"> 
-    <h1 class="header-title display-4 fw-normal text-success">Veterinaria</h1>
-      <p class="lead fw-normal text-success ">Registrate y logeate para poder comprar o hacer consultas online para tu mascota</p>
-  <a
-    class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-    href="/{{ app.user ? 'logout' : 'login' }}"
-    @click="isOpen = false">
-    {{ app.user ? 'Logout' : 'Login' }}
-  </a>
-    </div>
-    </div>
-    </div> 
-    {# <a class="btn btn-outline-secondary" href="/login">Login</a> #}
-    {# <a class="btn btn-outline-secondary" href="/register">Registrarse</a> #}
-  </div>
-
-
-<div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-  </div>
-</div>
-  
-
- 
-<div class="jumbotron jumbotron-fluid  p-3 m-md-1">
-  <div class="container text-xs-center">
-    <h1 class="display-1">Sobre nosotros</h1>
-    <p class="lead">Descripccion.</p>
-  </div>
-</div>
-
-
-
-  {# <div class="col-md-5 p-lg-5 mx-auto my-5">
-    <h1 class="display-4 fw-normal">Sobre nosotros</h1>
-    <p class="lead fw-normal">Descripción</p>
-    <button type="button" class="btn btn-sm btn-outline-secondary"><a class="" href="#">View</button></a>
-  </div> #}
-
-
-  <div class="col-md-5 p-lg-5 mx-auto my-5">
-    <h1 class="display-4 fw-normal">Medicos especializados</h1>
-    <p class="lead fw-normal">Descripción</p>
-    <br>
-    <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-100 start-50 translate-middle">
-      <a class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-4 px-4" href="/home/cuerpoMedico">View
-    </button>
-      </a>
-  </div>
-
-
-
-
-
-<!-- Vista de los productos y categorias -->
-
-
-  <div class="album p-3 mb-2 bg-primary text-white">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        {% for categoria in categorias %}
-        <div class="col">
-          <div class="card shadow-sm">
-          <img src="{{categoria.imagen}}">
-            <title>{{categoria.Nombre}}</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{categoria.Nombre}}</text></svg>
-            <div class="card-body">
-              <p class="card-text">{{categoria.descripcion}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="/categorias/{{categoria.id}}" class="uppercase border border-gray-500 text-gray-600 text-lg py-4 px-12 rounded transition transition-all hover:bg-gray-800 hover:text-white">
-                    Ver
-                </a>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div> 
-        {% endfor %}      
-      </div>
-    </div>
-  </div>
-
-
-
-
-<!-- Comienza el footer -->
-
-<footer class="container py-5"> 
-  <div class="row">
-    <div class="col-12 col-md">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945. 049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z"/>
-      </svg>
-      <small class="d-block mb-3 text-muted">© 2017–2022</small>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Tienda</h5>
-      <ul class="list-unstyled text-small">
-        {# <li><a class="link-secondary" href="#">Cool stuff</a></li>
-        <li><a class="link-secondary" href="#">Random feature</a></li>
-        <li><a class="link-secondary" href="#">Team feature</a></li>
-        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-        <li><a class="link-secondary" href="#">Another one</a></li>
-        <li><a class="link-secondary" href="#">Last time</a></li> #}
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Explorar</h5>
-      <ul class="list-unstyled text-small">
-        {# <li><a class="link-secondary" href="#">Resource name</a></li>
-        <li><a class="link-secondary" href="#">Resource</a></li>
-        <li><a class="link-secondary" href="#">Another resource</a></li>
-        <li><a class="link-secondary" href="#">Final resource</a></li> #}
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Social</h5>
-      <ul class="list-unstyled text-small">
-        {# <li><a class="link-secondary" href="#">Business</a></li>
-        <li><a class="link-secondary" href="#">Education</a></li>
-        <li><a class="link-secondary" href="#">Government</a></li>
-        <li><a class="link-secondary" href="#">Gaming</a></li> #}
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Soporte</h5>
-      <ul class="list-unstyled text-small">
-        {# <li><a class="link-secondary" href="#">Team</a></li>
-        <li><a class="link-secondary" href="#">Locations</a></li>
-        <li><a class="link-secondary" href="#">Privacy</a></li>
-        <li><a class="link-secondary" href="#">Terms</a></li> #}
-      </ul>
-    </div>
-  </div>
-</footer>
-
-
-</body>
 
 <style>
 
@@ -268,6 +102,210 @@ background-size: fill;
         text-shadow: 5px 2px $bg-color-1;
       }
 
+.btn {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a188fc+0,2eeade+100 */
+    background: #a188fc; /* Old browsers */
+    background: -moz-linear-gradient(left, #a188fc 0%, #2eeade 50%, #a188fc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #a188fc 0%,#2eeade 50%, #a188fc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #a188fc 0%,#2eeade 50%, #a188fc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a188fc', endColorstr='#a188fc',GradientType=1 ); /* IE6-9 */
+    background-size:200%;
+    background-position: 100% ;
+    color: #ccffff;
+    padding: 1em 3em;
+    border-radius: 2em;
+    display: inline-block;
+    box-shadow: 0 0 20px #229999;
+    text-shadow: 0 0 5px #000;
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+    border: solid 1px #333;
+  }
+  .btn:hover {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a188fc+0,2eeade+100 */
+    background: #a188fc; /* Old browsers */
+    background: -moz-linear-gradient(left, #a188fc 0%, #2eeade 50%, #a188fc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #a188fc 0%,#2eeade 50%, #a188fc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #a188fc 0%,#2eeade 50%, #a188fc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a188fc', endColorstr='#a188fc',GradientType=1 ); /* IE6-9 */
+    background-size:200%;
+    background-position: 0px ;
+    box-shadow: 0 0 40px #55ffff;
+    color: #ccffff;
+    text-shadow: 0 0 30px #000000;
+    border: solid 1px #ccffff;
+  }
+
+
+</style>
+
+<body> 
+
+<main>
+  
+  <div class="fondo position-relative overflow-hidden p-3 p-md-5 text-center bg-info text-dark">
+
+    <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    
+    <a class="py-2" href="#" aria-label="Product">
+    
+      <i class="fa-regular fa-hospital fs-3 position-absolute top-0 start-0" ></i>
+    </a>
+    </nav>
+
+    {# <a
+      class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+      href="/{{ app.user ? 'logout' : 'login' }}"
+      @click="isOpen = false">
+      {{ app.user ? 'Logout' : 'Login' }}
+    </a> #}
+
+  
+  <div class="col-md-1 p-lg-5  my-5">
+    <div class="intro ">
+    <div class="content">
+    <div class="header-group"> 
+    <h1 class="header-title display-4 fw-normal text-success">Veterinaria</h1>
+      <p class="lead fw-normal text-success ">Registrate y logeate para poder comprar o hacer consultas online para tu mascota</p>
+  <a
+    class="btn"
+    href="/{{ app.user ? 'logout' : 'login' }}"
+    @click="isOpen = false">
+    {{ app.user ? 'Logout' : 'Login' }}
+  </a>
+    </div>
+    </div>
+    </div> 
+    {# <a class="btn btn-outline-secondary" href="/login">Login</a> #}
+    {# <a class="btn btn-outline-secondary" href="/register">Registrarse</a> #}
+  </div>
+
+
+<div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+</div>
+  
+
+ 
+<div class="jumbotron jumbotron-fluid  p-3 m-md-1">
+  <div class="container text-xs-center">
+    <h1 class="display-1">Sobre nosotros</h1>
+    <p class="lead">Descripccion.</p>
+  </div>
+</div>
+
+
+
+  {# <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 fw-normal">Sobre nosotros</h1>
+    <p class="lead fw-normal">Descripción</p>
+    <button type="button" class="btn btn-sm btn-outline-secondary"><a class="" href="#">View</button></a>
+  </div> #}
+
+
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 fw-normal">Medicos especializados</h1>
+    <p class="lead fw-normal">Descripción</p>
+    <br>
+    {# <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-100 start-50 translate-middle ">
+      <a class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-4 px-4 " href="/home/cuerpoMedico">View
+    </button> #}
+    <button class="custom-bton bton-9"><a href="/home/cuerpoMedico">Read More<a/></button>
+      </a>
+  </div>
+
+
+
+
+
+<!-- Vista de los productos y categorias -->
+
+
+  <div class="album p-3 mb-2 bg-primary text-dark">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for categoria in categorias %}
+        <div class="col">
+          <div class="card shadow-sm">
+          <img src="{{categoria.imagen}}">
+            <title>{{categoria.Nombre}}</title><rect width="100%" height="100%" fill="#55595c"></rect>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{categoria.Nombre}}</text></svg>
+            <div class="card-body">
+              <p class="card-text">{{categoria.descripcion}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="/categorias/{{categoria.id}}" class="uppercase border border-gray-500 text-gray-600 text-lg py-4 px-12 rounded transition transition-all hover:bg-gray-800 hover:text-white">
+                    Ver
+                </a>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div> 
+        {% endfor %}      
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- Comienza el footer -->
+
+<footer class="container py-5"> 
+  <div class="row">
+    <div class="col-12 col-md">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945. 049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z"/>
+      </svg>
+      <small class="d-block mb-3 text-muted">© 2017–2022</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Tienda</h5>
+      <ul class="list-unstyled text-small">
+        {# <li><a class="link-secondary" href="#">Cool stuff</a></li>
+        <li><a class="link-secondary" href="#">Random feature</a></li>
+        <li><a class="link-secondary" href="#">Team feature</a></li>
+        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
+        <li><a class="link-secondary" href="#">Another one</a></li>
+        <li><a class="link-secondary" href="#">Last time</a></li> #}
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Explorar</h5>
+      <ul class="list-unstyled text-small">
+        {# <li><a class="link-secondary" href="#">Resource name</a></li>
+        <li><a class="link-secondary" href="#">Resource</a></li>
+        <li><a class="link-secondary" href="#">Another resource</a></li>
+        <li><a class="link-secondary" href="#">Final resource</a></li> #}
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Social</h5>
+      <ul class="list-unstyled text-small">
+        {# <li><a class="link-secondary" href="#">Business</a></li>
+        <li><a class="link-secondary" href="#">Education</a></li>
+        <li><a class="link-secondary" href="#">Government</a></li>
+        <li><a class="link-secondary" href="#">Gaming</a></li> #}
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Soporte</h5>
+      <ul class="list-unstyled text-small">
+        {# <li><a class="link-secondary" href="#">Team</a></li>
+        <li><a class="link-secondary" href="#">Locations</a></li>
+        <li><a class="link-secondary" href="#">Privacy</a></li>
+        <li><a class="link-secondary" href="#">Terms</a></li> #}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+
 
 {% endblock %}
-

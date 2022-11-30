@@ -55,12 +55,17 @@
         </tbody>
     </table>
 
-    {% if app.user.roles == 'ROLE_ADMIN'  %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    {# {% if app.user.roles == 'ROLE_ADMIN'  %} #}
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-    {% endif %}
+    <a href="{{ path('app_categorias_index') }}">back to list</a>
+    <a href="{{ path('app_categorias_edit', {'id': categoria.id}) }}">edit</a>
+    {{ include('categorias/_delete_form.html.twig') }}
+    {% endif %} 
 
     {# <button type="button" class="btn btn-success">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
@@ -69,10 +74,10 @@
             <a href="{{ path('app_producto_new') }}" class="text-light">Add new item</a>  
     </button> #}
 
-    <a href="{{ path('app_categorias_index') }}">back to list</a>
-
-    <a href="{{ path('app_categorias_edit', {'id': categoria.id}) }}">edit</a>
     
-    
-    {{ include('categorias/_delete_form.html.twig') }}
 {% endblock %}
+
+
+
+
+

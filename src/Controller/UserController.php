@@ -40,7 +40,7 @@ class UserController extends AbstractController
             //$entityManager->persist($user);
             //$entityManager->flush();
 
-            $userRepository->add($user, true);
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }

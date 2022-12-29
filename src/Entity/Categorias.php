@@ -107,4 +107,5 @@ class Categorias
     public function __toString(){
         return strval($this->getId());
     }
+    
 }

@@ -27,135 +27,132 @@ class CategoriasController extends AbstractController
     }
 
 
-    #[Route('/new', name: 'app_categorias_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoriasRepository $categoriasRepository): Response
-    {
-        $categorias = new Categorias();
-        $form = $this->createForm(CategoriasType::class, $categorias);
-        $form->handleRequest($request);
+    // #[Route('/new', name: 'app_categorias_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, CategoriasRepository $categoriasRepository): Response
+    // {
+    //     $categorias = new Categorias();
+    //     $form = $this->createForm(CategoriasType::class, $categorias);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $categorias = $form->getData();
-            $Imagen = $form->get('Imagen')->getData();
-           if ($Imagen){
-                $newFileName = uniqid() . '.' . $Imagen->guessExtension();
-                try {
-                    $Imagen->move(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads/',
-                        $newFileName
-                    );
-                } catch (FileException $e){
-                    return new Response($e->getMessage());
-                }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $categorias = $form->getData();
+    //         $Imagen = $form->get('Imagen')->getData();
+    //        if ($Imagen){
+    //             $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+    //             try {
+    //                 $Imagen->move(
+    //                     $this->getParameter('kernel.project_dir') . '/public/uploads/',
+    //                     $newFileName
+    //                 );
+    //             } catch (FileException $e){
+    //                 return new Response($e->getMessage());
+    //             }
                 
-                $categorias->setImagen('/uploads/' . $newFileName);
-           }
-            $categoriasRepository->save($categorias, true);
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->renderForm('categorias/new.html.twig', [
-            'categoria' => $categorias,
-            'form' => $form,
-        ]);
-    }
+    //             $categorias->setImagen('/uploads/' . $newFileName);
+    //        }
+    //         $categoriasRepository->save($categorias, true);
+    //         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->renderForm('categorias/new.html.twig', [
+    //         'categoria' => $categorias,
+    //     ]);
+    // }
 
     
     #[Route('/{id}', name: 'app_categorias_show', methods: ['GET' ,'POST'])]
-    public function show(Request $request, Categorias $categoria, ProductoRepository $productoRepository, $id): Response
+    public function show(Request $request, CategoriasRepository $categoriasRepository, ProductoRepository $productoRepository, $id): Response
     {
        $data=$productoRepository->getProductosByCategorias($id);
+        $nombrecategoria = $categoriasRepository->findOneById($id);
+       
+    //    $producto = new Producto();
+    //     $form = $this->createForm(ProductoType::class, $producto);
+    //     $form->handleRequest($request);
 
-       $producto = new Producto();
-        $form = $this->createForm(ProductoType::class, $producto);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $producto = $form->getData();
-            $producto->setCategorias($categoria);
-            $Imagen = $form->get('Imagen')->getData();
-           if ($Imagen){
-                $newFileName = uniqid() . '.' . $Imagen->guessExtension();
-                try {
-                    $Imagen->move(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads/',
-                        $newFileName
-                    );
-                } catch (FileException $e){
-                    return new Response($e->getMessage());
-                }
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $producto = $form->getData();
+        //     $producto->setCategorias($categoria);
+        //     $Imagen = $form->get('Imagen')->getData();
+        //    if ($Imagen){
+        //         $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+        //         try {
+        //             $Imagen->move(
+        //                 $this->getParameter('kernel.project_dir') . '/public/uploads/',
+        //                 $newFileName
+        //             );
+        //         } catch (FileException $e){
+        //             return new Response($e->getMessage());
+        //         }
                 
-                $producto->setImagen('/uploads/' . $newFileName);
-           }
-            $productoRepository->save($producto, true);
-            return $this->redirectToRoute('app_categorias_show', ['id' => $id], Response::HTTP_SEE_OTHER);
-        }
+        //         $producto->setImagen('/uploads/' . $newFileName);
+        //    }
+        //     $productoRepository->save($producto, true);
+        //     return $this->redirectToRoute('app_categorias_show', ['id' => $id], Response::HTTP_SEE_OTHER);
+        // }
         
-        return $this->renderForm('categorias/show.html.twig', [
-            'productos'=>$data,
-            'categoria' => $categoria,
-            'producto' => $producto,
-            'form' => $form,        
-            
+        return $this->render('categorias/show.html.twig', [
+            'productos'=>$data, 
+            'categoria'=>$nombrecategoria
         ]);
     }
 
 
-    #[Route('/categorias/edit/{id}', name: 'app_categorias_edit')]
-    public function edit($id, Request $request): Response
-    {
-        $categorias = $this->CategoriasRepository->find($id);
-        $form = $this->createForm(CategoriasType::class, $categorias);
+    // #[Route('/categorias/edit/{id}', name: 'app_categorias_edit')]
+    // public function edit($id, Request $request): Response
+    // {
+    //     $categorias = $this->CategoriasRepository->find($id);
+    //     $form = $this->createForm(CategoriasType::class, $categorias);
 
-        $form->handleRequest($request);
-        $Imagen = $form->get('Imagen')->getData();
+    //     $form->handleRequest($request);
+    //     $Imagen = $form->get('Imagen')->getData();
 
-        if($form->isSubmitted() && $form->isValid()){
-            if($Imagen){                 
-                if($categorias->getImagen() !== null){
-                     if(file_exists(
-                        $this->getParameter('kernel.project_dir') . $categorias->getImagen()                        
-                        )){
-                            $this->GetParameter('kernel.project_dir') . $categorias->getImagen();
-                        }
-                            $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         if($Imagen){                 
+    //             if($categorias->getImagen() !== null){
+    //                  if(file_exists(
+    //                     $this->getParameter('kernel.project_dir') . $categorias->getImagen()                        
+    //                     )){
+    //                         $this->GetParameter('kernel.project_dir') . $categorias->getImagen();
+    //                     }
+    //                         $newFileName = uniqid() . '.' . $Imagen->guessExtension();
                            
-                            try {
-                                $Imagen->move(
-                                    $this->getParameter('kernel.project_dir') . '/public/uploads',
-                                    $newFileName
-                                );
-                            } catch (FileException $e){
-                                return new Response($e->getMessage());
-                            }
+    //                         try {
+    //                             $Imagen->move(
+    //                                 $this->getParameter('kernel.project_dir') . '/public/uploads',
+    //                                 $newFileName
+    //                             );
+    //                         } catch (FileException $e){
+    //                             return new Response($e->getMessage());
+    //                         }
 
-                            $categorias->setImagen('/uploads/' . $newFileName);
-                            $this->em->flush();
+    //                         $categorias->setImagen('/uploads/' . $newFileName);
+    //                         $this->em->flush();
 
-                            return $this->redirectToRoute('app_categorias_index');
+    //                         return $this->redirectToRoute('app_categorias_index');
                             
-                        }
-            }
-        }
-        return  $this->render('categorias/edit.html.twig',[
-            'categorias' => $categorias,
-            'form' => $form->createView()
-        ]);
-    }
+    //                     }
+    //         }
+    //     }
+    //     return  $this->render('categorias/edit.html.twig',[
+    //         'categorias' => $categorias,
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 
 
-    #[Route('/delete/{id}', name: 'app_categorias_delete', methods: ['POST'])]
-    public function delete(Request $request, Categorias $categoria, CategoriasRepository $categoriasRepository, $id, ProductoRepository $productoRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$categoria->getId(), $request->request->get('_token'))) {
-            $productos=$productoRepository->findByCategorias($id);
-        foreach($productos as $producto){
-            $productoRepository->remove($producto);
-        };
-            $categoriasRepository->remove($categoria, true);        
-        }
+    // #[Route('/delete/{id}', name: 'app_categorias_delete', methods: ['POST'])]
+    // public function delete(Request $request, Categorias $categoria, CategoriasRepository $categoriasRepository, $id, ProductoRepository $productoRepository): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$categoria->getId(), $request->request->get('_token'))) {
+    //         $productos=$productoRepository->findByCategorias($id);
+    //     foreach($productos as $producto){
+    //         $productoRepository->remove($producto);
+    //     };
+    //         $categoriasRepository->remove($categoria, true);        
+    //     }
 
-        return $this->redirectToRoute('app_categorias_index', [], Response::HTTP_SEE_OTHER);
-    }
+    //     return $this->redirectToRoute('app_categorias_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }
 
 

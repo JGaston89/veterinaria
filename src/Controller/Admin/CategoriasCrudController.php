@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CategoriasCrudController extends AbstractCrudController
 {
-    public const PRODUCTOS_BASE_PATH = "/public/uploads/";
+    public const PRODUCTOS_BASE_PATH = "/uploads/";
     public const PRODUCTOS_UPLOAD_DIR = "/public/uploads/";
 
     public static function getEntityFqcn(): string
@@ -28,7 +28,7 @@ class CategoriasCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('Nombre', 'Label'),
+            TextField::new('Nombre', 'Titulo'),
             TextField::new('Descripcion'),
             ImageField::new('Imagen')
                 ->setBasePath(self::PRODUCTOS_BASE_PATH)

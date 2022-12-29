@@ -12,10 +12,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ProductoCrudController extends AbstractCrudController
 {
-    public const PRODUCTOS_BASE_PATH = "/public/uploads/";
+    public const PRODUCTOS_BASE_PATH = "/uploads/";
     public const PRODUCTOS_UPLOAD_DIR = "/public/uploads/";
 
     public static function getEntityFqcn(): string
@@ -40,12 +41,6 @@ class ProductoCrudController extends AbstractCrudController
         ];
     }
 
-    public function persistEntity(EntityManagerInterface $em, $entityInstance):void
-    {
-        if (!$entityInstance instanceof Categoria) return;
-        $entityInstance->setCreatedAt(new \DateTimeImmutable);
 
-        parent::persistEntity($em, $entityInstance);
-    }
     
 }

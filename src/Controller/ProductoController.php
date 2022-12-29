@@ -33,37 +33,37 @@ class ProductoController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_producto_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductoRepository $productoRepository): Response
-    {
-        $producto = new Producto();
-        $form = $this->createForm(ProductoType::class, $producto);
-        $form->handleRequest($request);
+    // #[Route('/new', name: 'app_producto_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, ProductoRepository $productoRepository): Response
+    // {
+    //     $producto = new Producto();
+    //     $form = $this->createForm(ProductoType::class, $producto);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $producto = $form->getData();
-            $Imagen = $form->get('Imagen')->getData();
-           if ($Imagen){
-                $newFileName = uniqid() . '.' . $Imagen->guessExtension();
-                try {
-                    $Imagen->move(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads/',
-                        $newFileName
-                    );
-                } catch (FileException $e){
-                    return new Response($e->getMessage());
-                }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $producto = $form->getData();
+    //         $Imagen = $form->get('Imagen')->getData();
+    //        if ($Imagen){
+    //             $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+    //             try {
+    //                 $Imagen->move(
+    //                     $this->getParameter('kernel.project_dir') . '/public/uploads/',
+    //                     $newFileName
+    //                 );
+    //             } catch (FileException $e){
+    //                 return new Response($e->getMessage());
+    //             }
                 
-                $producto->setImagen('/uploads/' . $newFileName);
-           }
-            $productoRepository->save($producto, true);
-            return $this->redirectToRoute('app_producto_index', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->renderForm('producto/new.html.twig', [
-            'producto' => $producto,
-            'form' => $form,
-        ]);
-    }
+    //             $producto->setImagen('/uploads/' . $newFileName);
+    //        }
+    //         $productoRepository->save($producto, true);
+    //         return $this->redirectToRoute('app_producto_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->renderForm('producto/new.html.twig', [
+    //         'producto' => $producto,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/{id}', name: 'app_producto_show', methods: ['GET'])]
     public function show(Producto $producto): Response
@@ -73,47 +73,47 @@ class ProductoController extends AbstractController
         ]);
     }
 
-    #[Route('/producto/edit/{id}', name: 'app_producto_edit')]
-    public function edit($id, Request $request): Response
-    {
-        $producto = $this->ProductoRepository->find($id);
-        $form = $this->createForm(ProductoType::class, $producto);
+    // #[Route('/producto/edit/{id}', name: 'app_producto_edit')]
+    // public function edit($id, Request $request): Response
+    // {
+    //     $producto = $this->ProductoRepository->find($id);
+    //     $form = $this->createForm(ProductoType::class, $producto);
 
-        $form->handleRequest($request);
-        $Imagen = $form->get('Imagen')->getData();
+    //     $form->handleRequest($request);
+    //     $Imagen = $form->get('Imagen')->getData();
 
-        if($form->isSubmitted() && $form->isValid()){
-            if($Imagen){                 
-                if($producto->getImagen() !== null){
-                     if(file_exists(
-                        $this->getParameter('kernel.project_dir') . $producto->getImagen()                        
-                        )){
-                            $this->GetParameter('kernel.project_dir') . $producto->getImagen();
-                        }
-                            $newFileName = uniqid() . '.' . $Imagen->guessExtension();
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         if($Imagen){                 
+    //             if($producto->getImagen() !== null){
+    //                  if(file_exists(
+    //                     $this->getParameter('kernel.project_dir') . $producto->getImagen()                        
+    //                     )){
+    //                         $this->GetParameter('kernel.project_dir') . $producto->getImagen();
+    //                     }
+    //                         $newFileName = uniqid() . '.' . $Imagen->guessExtension();
                            
-                            try {
-                                $Imagen->move(
-                                    $this->getParameter('kernel.project_dir') . '/public/uploads',
-                                    $newFileName
-                                );
-                            } catch (FileException $e){
-                                return new Response($e->getMessage());
-                            }
+    //                         try {
+    //                             $Imagen->move(
+    //                                 $this->getParameter('kernel.project_dir') . '/public/uploads',
+    //                                 $newFileName
+    //                             );
+    //                         } catch (FileException $e){
+    //                             return new Response($e->getMessage());
+    //                         }
 
-                            $producto->setImagen('/uploads/' . $newFileName);
-                            $this->em->flush();
+    //                         $producto->setImagen('/uploads/' . $newFileName);
+    //                         $this->em->flush();
 
-                            return $this->redirectToRoute('app_producto_index');
+    //                         return $this->redirectToRoute('app_producto_index');
                             
-                        }
-            }
-        }
-        return  $this->render('producto/edit.html.twig',[
-            'producto' => $producto,
-            'form' => $form->createView()
-        ]);
-    }
+    //                     }
+    //         }
+    //     }
+    //     return  $this->render('producto/edit.html.twig',[
+    //         'producto' => $producto,
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 
     #[Route('/{id}', name: 'app_producto_delete', methods: ['POST'])]
     public function delete(Request $request, Producto $producto, ProductoRepository $productoRepository): Response

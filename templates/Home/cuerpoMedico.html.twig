@@ -81,44 +81,113 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-    </style>
+
+.frame {
+  width: 90%;
+  margin: 40px auto;
+  text-align: center;
+}
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+
+</style>
 
     
   </head>
   <body>
     
 <header>
-<!--
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-        <strong>Album</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
--->
+
 </header>
 
 <main>
@@ -128,10 +197,6 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Profesionales especializados</h1>
         <p class="lead text-muted">Te traemos a nuestros profesionales especializados en su area, ingresa y solicita tu turno con nostros.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
       </div>
     </div>
   </section>
@@ -146,16 +211,29 @@
             <h5>Rayos X</h5>
             <div class="card-body">
               <p class="card-text">Consulta sobre nuestros profesionales en rayos y pide tu turno.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
+              <div class="d-flex justify-content-between align-items-center flex-column">
+              <!-- aca comienza el dropdown-->
+                <p>
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    Telefonos
+                  </button>
+                </p>
+                <div style="min-height: 120px;">
+                  <div class="collapse" id="collapseWidthExample">
+                    <ul class="list-group">
+                      <li class="list-group-item">Juan garcia 221-555-222</li>
+                      <li class="list-group-item">Perez Damian 221-555-777</li>
+                      <li class="list-group-item">Larroque Maria 221-111-888</li>
+                      <li class="list-group-item">Lape Aron 221-777-888</li>
+                      <li class="list-group-item">Quiroga Luisa 011-777-888</li>
+                    </ul>
+                  </div>
+                </div> <!-- aca termina el dropdown-->
               </div>
             </div>
           </div>
         </div>
+        
 
         <div class="col">
           <div class="card shadow-sm">
@@ -163,12 +241,24 @@
            <h5>Ecografias</h5>
             <div class="card-body">
               <p class="card-text">Consulta sobre nuestros profesionales en ecografias y pide tu turno.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
+              <div class="d-flex justify-content-between align-items-center flex-column">
+                <!-- aca comienza el dropdown-->
+                <p>
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2">
+                    Telefonos
+                  </button>
+                </p>
+                <div style="min-height: 120px;">
+                  <div class="collapse" id="collapseWidthExample2">
+                    <ul class="list-group">
+                      <li class="list-group-item">Juan garcia 221-555-222</li>
+                      <li class="list-group-item">Perez Damian 221-555-777</li>
+                      <li class="list-group-item">Larroque Maria 221-111-888</li>
+                      <li class="list-group-item">Lape Aron 221-777-888</li>
+                      <li class="list-group-item">Quiroga Luisa 011-777-888</li>
+                    </ul>
+                  </div>
+                </div> <!-- aca termina el dropdown-->
               </div>
             </div>
           </div>
@@ -180,27 +270,41 @@
             <h5>Laboratorios</h5>
             <div class="card-body">
               <p class="card-text">Consulta sobre nuestros profesionales en laboratios y pide tu turno.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
+              <div class="d-flex justify-content-between align-items-center flex-column">
+                <!-- aca comienza el dropdown-->
+                <p>
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3">
+                    Telefonos
+                  </button>
+                </p>
+                <div style="min-height: 120px;">
+                  <div class="collapse" id="collapseWidthExample3">
+                    <ul class="list-group">
+                      <li class="list-group-item">Juan garcia 221-555-222</li>
+                      <li class="list-group-item">Perez Damian 221-555-777</li>
+                      <li class="list-group-item">Larroque Maria 221-111-888</li>
+                      <li class="list-group-item">Lape Aron 221-777-888</li>
+                      <li class="list-group-item">Quiroga Luisa 011-777-888</li>
+                    </ul>
+                  </div>
+                </div> <!-- aca termina el dropdown-->
               </div>
             </div>
           </div>
         </div>        
   </div>
 
+
+<div class="frame">
+  <button class="custom-btn btn-12"><a class="text-light" href="/home"><span>Click!</span><span>Volver al home</span></a></button>
+</div>
+
+
 </main>
 
 <footer class="text-muted py-5">
   <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.2/getting-started/introduction/">getting started guide</a>.</p>
+    <p class="mb-1">Esperemos que encuentres lo que estabas buscando</p>
   </div>
 </footer>
 

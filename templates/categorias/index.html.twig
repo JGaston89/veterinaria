@@ -21,10 +21,14 @@
                 <td>{{ categoria.id }}</td>
                 <td>{{ categoria.Nombre }}</td>
                 <td>{{ categoria.descripcion }}</td>
-                <td>{{ categoria.imagen }}</td>
+                <td><img
+                    src="/uploads/{{ categoria.imagen }}"
+                    alt=""
+                    class="shadow-xl rounded-md" 
+                    style="height:70px; width:70px"</td>
                 <td>
+                    
                     <a href="{{ path('app_categorias_show', {'id': categoria.id}) }}">show</a>
-                    <a href="{{ path('app_categorias_edit', {'id': categoria.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
